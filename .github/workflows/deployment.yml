@@ -1,19 +1,17 @@
-name: Deployment workflow
+name: Deployment Workflow
 
 on:
   push:
     branches:
-    - main
-    - vrush_dev_feb_25
-    - release*
+      - main
+      - vrush_dev_feb_25
+      - release*
 
 jobs:
   docker-build:
-    uses: ./docker_build.yml
+    uses: ./.github/workflows/docker_build.yml
     with:
       WORKSPACE: ${{ github.ref_name }}
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-  
